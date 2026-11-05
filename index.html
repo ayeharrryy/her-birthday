@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love! ❤️ | Nov 7th</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseGold: '#B76E79',
+                        blushPink: '#FFD1DC',
+                        softCream: '#FFF9F6',
+                        deepRose: '#8B263E',
+                        warmPeach: '#FFE5D9',
+                        heartRed: '#FF4D6D'
+                    },
+                    fontFamily: {
+                        serif: ['"Dancing Script"', 'cursive'],
+                        cursive: ['"Sacramento"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        /* Floating Hearts Animation */
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.6) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.1) rotate(360deg); opacity: 0; }
+        }
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 9s linear infinite;
+        }
+
+        /* Pulsing Glow Effect */
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 182, 193, 0.6); }
+            50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 77, 109, 0.8); }
+        }
+        .pulse-glow { animation: glowPulse 3.5s infinite ease-in-out; }
+
+        /* 3D Flip Card Animation */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1); }
+        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .flip-card.flipped .transform-style-3d { transform: rotateY(180deg); }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 209, 220, 0.6);
+        }
+
+        /* Envelope Unseal Animation */
+        .envelope-wrapper { transition: all 0.5s ease-in-out; }
+        .envelope-top {
+            transform-origin: top;
+            transition: transform 0.6s ease-in-out 0.2s;
+        }
+        .envelope-wrapper.open .envelope-top {
+            transform: rotateX(180deg);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FFF9F6; }
+        ::-webkit-scrollbar-thumb { background: #FFD1DC; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B76E79; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-softCream via-warmPeach/30 to-blushPink/25 text-gray-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-roseGold selection:text-white">
+
+    <!-- Background Floating Hearts Particles -->
+    <div id="floating-bg-container" class="fixed inset-0 pointer-events-none overflow-hidden z-0"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-card border-b border-blushPink/40 px-6 py-4 flex justify-between items-center transition-all duration-300">
+        <div class="text-2xl font-serif text-deepRose font-bold flex items-center gap-2">
+            <i class="fa-solid fa-heart text-heartRed animate-bounce"></i> 
+            <span>November 7th Special</span>
+        </div>
+        <nav class="hidden md:flex gap-6 text-sm font-medium text-gray-700">
+            <a href="#hero" class="hover:text-deepRose transition-colors">Home</a>
+            <a href="#countdown-section" class="hover:text-deepRose transition-colors">Countdown</a>
+            <a href="#memories" class="hover:text-deepRose transition-colors">Our Memories</a>
+            <a href="#reasons" class="hover:text-deepRose transition-colors">Why I Love You</a>
+            <a href="#quiz" class="hover:text-deepRose transition-colors">Love Quiz</a>
+            <a href="#letter" class="hover:text-deepRose transition-colors">Secret Letter</a>
+        </nav>
+        <button id="music-toggle" class="px-4 py-2 rounded-full bg-white/90 border border-blushPink text-deepRose text-xs font-semibold shadow-sm hover:bg-blushPink/50 transition-all flex items-center gap-2">
+            <i class="fa-solid fa-music text-heartRed" id="music-icon"></i>
+            <span id="music-text">Play Romantic Chimes</span>
+        </button>
+    </header>
+
+    <!-- SECTION 1: HERO BANNER -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 px-4 z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            
+            <!-- Photo/Profile Frame -->
+            <div class="relative w-48 h-48 sm:w-60 sm:h-60 mx-auto mb-8 rounded-full p-2.5 bg-gradient-to-tr from-roseGold via-blushPink to-deepRose pulse-glow">
+                <div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center relative shadow-inner">
+                    <img id="hero-photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="My Beautiful Girlfriend" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" onerror="this.onerror=null; this.src='https://placehold.co/400x400/FFD1DC/8B263E?text=❤️+Birthday+Girl';">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deepRose/20 to-transparent pointer-events-none"></div>
+                </div>
+                <div class="absolute -bottom-2 right-4 bg-white p-3 rounded-full shadow-lg border border-blushPink text-heartRed">
+                    <i class="fa-solid fa-crown text-2xl"></i>
+                </div>
+            </div>
+
+            <div class="inline-block px-4 py-1.5 mb-4 rounded-full bg-blushPink/40 border border-blushPink/80 text-deepRose text-xs sm:text-sm font-semibold tracking-wide">
+                🎂 Celebration Day: November 7th
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif text-deepRose font-bold mb-4 leading-tight drop-shadow-sm">
+                Happy Birthday, <span id="girlfriend-name" class="underline decoration-blushPink underline-offset-8">My Queen</span>! ❤️
+            </h1>
+
+            <p class="max-w-xl mx-auto text-gray-600 text-base sm:text-lg mb-8 leading-relaxed font-light">
+                Today is all about celebrating the most gorgeous, kind, and loving person in my world. You bring so much magic into my life every single day!
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#countdown-section" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-deepRose to-roseGold text-white font-medium shadow-lg hover:shadow-roseGold/50 transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-2">
+                    Start Celebrating <i class="fa-solid fa-gift"></i>
+                </a>
+                <button onclick="triggerConfettiExplosion()" class="px-8 py-3.5 rounded-full bg-white/90 border border-blushPink text-deepRose font-medium shadow-md hover:bg-blushPink/30 transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sparkles text-heartRed"></i> Shower Love
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: COUNTDOWN TIMER / BANNER -->
+    <section id="countdown-section" class="py-16 px-4 z-10 relative">
+        <div class="max-w-4xl mx-auto glass-card rounded-3xl p-8 sm:p-10 shadow-xl border border-blushPink text-center">
+            <span class="text-roseGold font-serif text-2xl">Mark Your Calendar</span>
+            <h2 id="countdown-heading" class="text-3xl sm:text-4xl font-serif text-deepRose font-bold my-2">Counting Down To November 7th ✨</h2>
+            <p id="countdown-subtext" class="text-gray-500 text-sm mb-8">Getting everything ready for your special moment!</p>
+
+            <!-- Countdown Digits Container -->
+            <div id="timer-container" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="bg-white/90 p-4 rounded-2xl shadow-sm border border-blushPink/50">
+                    <span id="days" class="text-3xl sm:text-5xl font-bold text-deepRose font-serif block">00</span>
+                    <span class="text-xs uppercase tracking-wider text-roseGold font-semibold mt-1 block">Days</span>
+                </div>
+                <div class="bg-white/90 p-4 rounded-2xl shadow-sm border border-blushPink/50">
+                    <span id="hours" class="text-3xl sm:text-5xl font-bold text-deepRose font-serif block">00</span>
+                    <span class="text-xs uppercase tracking-wider text-roseGold font-semibold mt-1 block">Hours</span>
+                </div>
+                <div class="bg-white/90 p-4 rounded-2xl shadow-sm border border-blushPink/50">
+                    <span id="minutes" class="text-3xl sm:text-5xl font-bold text-deepRose font-serif block">00</span>
+                    <span class="text-xs uppercase tracking-wider text-roseGold font-semibold mt-1 block">Minutes</span>
+                </div>
+                <div class="bg-white/90 p-4 rounded-2xl shadow-sm border border-blushPink/50">
+                    <span id="seconds" class="text-3xl sm:text-5xl font-bold text-deepRose font-serif block">00</span>
+                    <span class="text-xs uppercase tracking-wider text-roseGold font-semibold mt-1 block">Seconds</span>
+                </div>
+            </div>
+
+            <!-- Birthday Celebration Message (Hidden until Nov 7th or triggered) -->
+            <div id="bday-celebration-banner" class="hidden py-6">
+                <div class="text-5xl sm:text-6xl mb-4 animate-bounce">🎉 🥳 🎂 💖</div>
+                <h3 class="text-3xl sm:text-5xl font-serif text-deepRose font-bold mb-3">IT'S YOUR BIRTHDAY TODAY!</h3>
+                <p class="text-gray-600 max-w-md mx-auto text-base">May your day be filled with endless smiles, laughter, sweet treats, and all the love in the universe!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: POLAROID MEMORY GALLERY -->
+    <section id="memories" class="py-20 px-4 z-10 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-roseGold font-serif text-2xl">Sweet Moments Together</span>
+                <h2 class="text-3xl sm:text-5xl font-serif text-deepRose font-bold mt-1">Our Interactive Memory Cards</h2>
+                <p class="text-gray-500 text-sm mt-2">Tap any photo card to flip it over and read a special note!</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Memory Card 1 -->
+                <div class="flip-card h-80 perspective-1000 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="transform-style-3d w-full h-full relative rounded-2xl shadow-lg transition-all duration-700">
+                        <!-- Front -->
+                        <div class="backface-hidden absolute inset-0 bg-white p-4 rounded-2xl flex flex-col items-center justify-between border border-blushPink">
+                            <div class="w-full h-56 rounded-xl overflow-hidden bg-gray-100 relative">
+                                <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="First Date" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFD1DC/8B263E?text=First+Date';">
+                                <span class="absolute top-3 right-3 bg-white/90 text-deepRose text-xs px-2.5 py-1 rounded-full font-semibold shadow-sm">Memory #1</span>
+                            </div>
+                            <div class="text-center py-2">
+                                <p class="font-serif text-xl text-deepRose font-semibold">Where It All Began</p>
+                                <p class="text-xs text-roseGold">Tap to flip 💌</p>
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-deepRose to-roseGold text-white rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-xl">
+                            <i class="fa-solid fa-heart text-blushPink text-3xl mb-3"></i>
+                            <h4 class="font-serif text-2xl font-bold mb-2">Our First Chapter</h4>
+                            <p class="text-sm font-light leading-relaxed">
+                                "I still remember how nervous and excited I was when we first met. The second you smiled, I knew my heart was home."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Card 2 -->
+                <div class="flip-card h-80 perspective-1000 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="transform-style-3d w-full h-full relative rounded-2xl shadow-lg transition-all duration-700">
+                        <!-- Front -->
+                        <div class="backface-hidden absolute inset-0 bg-white p-4 rounded-2xl flex flex-col items-center justify-between border border-blushPink">
+                            <div class="w-full h-56 rounded-xl overflow-hidden bg-gray-100 relative">
+                                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Adventures" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFD1DC/8B263E?text=Adventures';">
+                                <span class="absolute top-3 right-3 bg-white/90 text-deepRose text-xs px-2.5 py-1 rounded-full font-semibold shadow-sm">Memory #2</span>
+                            </div>
+                            <div class="text-center py-2">
+                                <p class="font-serif text-xl text-deepRose font-semibold">Endless Adventures</p>
+                                <p class="text-xs text-roseGold">Tap to flip 💌</p>
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-deepRose to-roseGold text-white rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-xl">
+                            <i class="fa-solid fa-compass text-blushPink text-3xl mb-3"></i>
+                            <h4 class="font-serif text-2xl font-bold mb-2">My Favorite Travel Buddy</h4>
+                            <p class="text-sm font-light leading-relaxed">
+                                "Every trip, walk, and simple drive with you is an unforgettable journey. Life with you is pure adventure!"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Card 3 -->
+                <div class="flip-card h-80 perspective-1000 cursor-pointer" onclick="this.classList.toggle('flipped')">
+                    <div class="transform-style-3d w-full h-full relative rounded-2xl shadow-lg transition-all duration-700">
+                        <!-- Front -->
+                        <div class="backface-hidden absolute inset-0 bg-white p-4 rounded-2xl flex flex-col items-center justify-between border border-blushPink">
+                            <div class="w-full h-56 rounded-xl overflow-hidden bg-gray-100 relative">
+                                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Cozy Moments" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFD1DC/8B263E?text=Cozy+Moments';">
+                                <span class="absolute top-3 right-3 bg-white/90 text-deepRose text-xs px-2.5 py-1 rounded-full font-semibold shadow-sm">Memory #3</span>
+                            </div>
+                            <div class="text-center py-2">
+                                <p class="font-serif text-xl text-deepRose font-semibold">The Little Things</p>
+                                <p class="text-xs text-roseGold">Tap to flip 💌</p>
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="backface-hidden rotate-y-180 absolute inset-0 bg-gradient-to-br from-deepRose to-roseGold text-white rounded-2xl p-6 flex flex-col justify-center items-center text-center shadow-xl">
+                            <i class="fa-solid fa-mug-hot text-blushPink text-3xl mb-3"></i>
+                            <h4 class="font-serif text-2xl font-bold mb-2">Simple Quiet Days</h4>
+                            <p class="text-sm font-light leading-relaxed">
+                                "It's the cozy coffee mornings, inside jokes, and warm hugs that mean the absolute world to me."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: REASONS WHY I LOVE YOU GENERATOR -->
+    <section id="reasons" class="py-16 px-4 z-10 relative">
+        <div class="max-w-3xl mx-auto text-center glass-card rounded-3xl p-8 sm:p-12 shadow-xl border border-blushPink">
+            <span class="text-roseGold font-serif text-2xl">Endless Reasons</span>
+            <h2 class="text-3xl sm:text-5xl font-serif text-deepRose font-bold mt-1 mb-6">Why You Are So Special To Me</h2>
+
+            <!-- Dynamic Reason Box -->
+            <div id="reason-box" class="min-h-[120px] flex items-center justify-center p-6 bg-white/90 rounded-2xl border border-blushPink shadow-inner mb-8 transition-all duration-300">
+                <p id="reason-text" class="font-serif text-xl sm:text-2xl text-deepRose italic font-medium leading-relaxed">
+                    "Click the button below to generate a sweet reason why I love you!"
+                </p>
+            </div>
+
+            <button onclick="generateRandomReason(event)" class="px-8 py-4 rounded-full bg-gradient-to-r from-deepRose via-heartRed to-roseGold text-white font-semibold text-lg shadow-lg hover:shadow-heartRed/40 transition-all transform hover:-translate-y-1 active:translate-y-0 flex items-center justify-center gap-3 mx-auto">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Love Reason
+            </button>
+        </div>
+    </section>
+
+    <!-- SECTION 5: HOW WELL DO YOU KNOW US? (QUIZ) -->
+    <section id="quiz" class="py-20 px-4 z-10 relative">
+        <div class="max-w-2xl mx-auto glass-card rounded-3xl p-8 sm:p-10 shadow-xl border border-blushPink">
+            <div class="text-center mb-8">
+                <span class="text-roseGold font-serif text-2xl">A Fun Little Game</span>
+                <h2 class="text-3xl sm:text-4xl font-serif text-deepRose font-bold mt-1">How Well Do You Know Us?</h2>
+                <p class="text-gray-500 text-sm mt-1">Answer these sweet questions to test your love memory!</p>
+            </div>
+
+            <div id="quiz-container">
+                <div id="quiz-card" class="bg-white/90 p-6 rounded-2xl border border-blushPink/60 shadow-sm">
+                    <div class="flex justify-between items-center mb-4 text-xs font-semibold text-roseGold">
+                        <span id="quiz-progress">Question 1 of 3</span>
+                        <span id="quiz-score">Score: 0</span>
+                    </div>
+                    <h3 id="quiz-question" class="text-lg sm:text-xl font-bold text-deepRose mb-6">Loading question...</h3>
+                    <div id="quiz-options" class="grid grid-cols-1 gap-3">
+                        <!-- Options injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Quiz Complete Result Box (Hidden) -->
+                <div id="quiz-result" class="hidden text-center p-6 bg-white/90 rounded-2xl border border-blushPink">
+                    <div class="text-5xl mb-3">💖</div>
+                    <h3 class="text-2xl font-serif font-bold text-deepRose mb-2">Quiz Completed!</h3>
+                    <p id="quiz-result-text" class="text-gray-600 mb-6">You got 3 out of 3 correct!</p>
+                    <button onclick="resetQuiz()" class="px-6 py-2.5 rounded-full bg-deepRose text-white font-medium text-sm hover:bg-roseGold transition-colors">
+                        Play Again <i class="fa-solid fa-rotate-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: SECRET LOVE LETTER UNLOCKER -->
+    <section id="letter" class="py-20 px-4 z-10 relative">
+        <div class="max-w-3xl mx-auto text-center">
+            <span class="text-roseGold font-serif text-2xl">Top Secret</span>
+            <h2 class="text-3xl sm:text-5xl font-serif text-deepRose font-bold mt-1 mb-8">A Special Birthday Letter For You</h2>
+
+            <!-- Envelope Container -->
+            <div id="envelope-wrapper" class="envelope-wrapper relative max-w-lg mx-auto cursor-pointer" onclick="openSecretLetter()">
+                <!-- Sealed Envelope Body -->
+                <div id="envelope-sealed" class="bg-gradient-to-br from-warmPeach to-blushPink p-8 sm:p-12 rounded-2xl shadow-2xl border-2 border-roseGold/40 relative overflow-hidden flex flex-col items-center justify-center min-h-[260px] transition-all hover:scale-105">
+                    <div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
+                    <div class="w-16 h-16 rounded-full bg-deepRose text-white flex items-center justify-center text-2xl shadow-lg z-10 mb-4 animate-pulse">
+                        <i class="fa-solid fa-envelope-open-text"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-deepRose z-10">Tap To Open Your Birthday Letter</h3>
+                    <p class="text-xs text-roseGold z-10 mt-1 font-medium">Sealed with endless love ❤️</p>
+                </div>
+
+                <!-- Open Letter View (Hidden by default) -->
+                <div id="envelope-opened" class="hidden glass-card rounded-3xl p-8 sm:p-12 shadow-2xl text-left border-2 border-blushPink relative transition-all duration-700">
+                    <div class="flex justify-between items-center border-b border-blushPink pb-4 mb-6">
+                        <span class="font-serif text-2xl text-deepRose font-bold">My Dearest Love,</span>
+                        <span class="text-xs text-roseGold font-medium">November 7th</span>
+                    </div>
+
+                    <div class="space-y-4 text-gray-700 leading-relaxed font-light text-base sm:text-lg">
+                        <p>
+                            Happy Birthday! On this beautiful day, November 7th, the world became a brighter, sweeter, and infinitely better place because you were born.
+                        </p>
+                        <p>
+                            Words will never be enough to express how truly grateful I am to have you in my life. Your kindness, your infectious laugh, your gentle touch, and your incredible heart make every day feel like a miracle.
+                        </p>
+                        <p>
+                            I wish you a year ahead filled with unbounded joy, huge accomplishments, endless happiness, and all the sweet moments you so richly deserve. No matter where life takes us, I promise to stand by your side, cheering for you and loving you more with each passing day.
+                        </p>
+                        <p class="font-serif text-2xl text-deepRose font-semibold pt-4">
+                            Forever & Always Yours,<br>
+                            <span class="italic text-roseGold">Your Biggest Fan ❤️</span>
+                        </p>
+                    </div>
+
+                    <div class="mt-8 text-center border-t border-blushPink pt-6">
+                        <button onclick="closeSecretLetter(event)" class="text-xs text-roseGold font-semibold hover:text-deepRose transition-colors">
+                            <i class="fa-solid fa-lock text-xs mr-1"></i> Close Letter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-10 text-center text-gray-500 text-xs border-t border-blushPink/40 z-10 relative">
+        <p class="font-serif text-base text-deepRose font-bold mb-1">Crafted With Endless Love For You ❤️</p>
+        <p>Happy Birthday on November 7th!</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // CONFIGURATION: Set Girlfriend's Name
+        const GIRLFRIEND_NAME = "My Princess"; // Customize this name if desired
+
+        // Array of "Why I Love You" Reasons
+        const LOVE_REASONS = [
+            "Your smile effortlessly brightens up even my darkest days.",
+            "The way you care about everyone around you with such warmth.",
+            "How cute you look when you get deeply focused on something.",
+            "You always know how to make me laugh when I need it most.",
+            "Your warm and comforting hugs that make the world freeze.",
+            "The way your eyes sparkle whenever you talk about something you love.",
+            "You are not just my girlfriend, but my absolute best friend.",
+            "How thoughtful and sweet you are in every little detail.",
+            "You inspire me to become a better person every single day."
+        ];
+
+        // Custom Quiz Questions
+        const QUIZ_DATA = [
+            {
+                question: "What is the most special date in November?",
+                options: ["November 1st", "November 7th (Her Birthday! 🎉)", "November 15th", "November 28th"],
+                correct: 1
+            },
+            {
+                question: "Which of these best describes her smile?",
+                options: ["Nice", "Okay", "Radiant enough to light up the whole galaxy ✨", "Cute"],
+                correct: 2
+            },
+            {
+                question: "How much is she loved today and every day?",
+                options: ["To infinity and beyond! ❤️", "A whole lot", "3000%", "More than words can ever describe"],
+                correct: 0
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let audioContext = null;
+        let isPlayingMusic = false;
+        let musicInterval = null;
+
+        // On DOM Loaded Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update Name
+            const nameElem = document.getElementById('girlfriend-name');
+            if (nameElem) nameElem.textContent = GIRLFRIEND_NAME;
+
+            // Start Floating Particles
+            initFloatingHearts();
+
+            // Start Countdown Timer
+            startBirthdayCountdown();
+
+            // Render First Quiz Question
+            renderQuizQuestion();
+
+            // Background Music Button Listener
+            document.getElementById('music-toggle').addEventListener('click', toggleRomanticAudio);
+        });
+
+        /* 1. FLOATING HEARTS GENERATOR */
+        function initFloatingHearts() {
+            const container = document.getElementById('floating-bg-container');
+            const heartIcons = ['❤️', '💖', '🌸', '✨', '💕', '💗'];
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart text-lg sm:text-2xl';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        function spawnFloatingHeart(e) {
+            const container = document.getElementById('floating-bg-container');
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart text-2xl';
+            heart.innerText = '💖';
+            heart.style.left = (e.clientX || window.innerWidth / 2) + 'px';
+            heart.style.animationDuration = '4s';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+            triggerConfettiExplosion();
+        }
+
+        /* 2. NOVEMBER 7TH COUNTDOWN TIMER */
+        function startBirthdayCountdown() {
+            function updateTimer() {
+                const now = new Date();
+                const currentYear = now.getFullYear();
+                
+                // Target November 7th of current year
+                let targetDate = new Date(currentYear, 10, 7, 0, 0, 0); // Month is 0-indexed: 10 = Nov
+
+                // If Nov 7th has passed this year, target next year
+                if (now > targetDate && now.getDate() !== 7) {
+                    targetDate = new Date(currentYear + 1, 10, 7, 0, 0, 0);
+                }
+
+                const diff = targetDate - now;
+
+                // Check if Today is November 7th
+                if (now.getMonth() === 10 && now.getDate() === 7) {
+                    document.getElementById('timer-container').classList.add('hidden');
+                    document.getElementById('bday-celebration-banner').classList.remove('hidden');
+                    document.getElementById('countdown-heading').textContent = "Happy Birthday Princess! 🎉";
+                    document.getElementById('countdown-subtext').textContent = "Today is your special day!";
+                    return;
+                }
+
+                if (diff > 0) {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const minutes = Math.floor((diff / 1000 / 60) % 60);
+                    const seconds = Math.floor((diff / 1000) % 60);
+
+                    document.getElementById('days').textContent = String(days).padStart(2, '0');
+                    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                }
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        /* 3. REASON GENERATOR WITH ANIMATION */
+        function generateRandomReason(e) {
+            const reasonText = document.getElementById('reason-text');
+            const randomReason = LOVE_REASONS[Math.floor(Math.random() * LOVE_REASONS.length)];
+
+            reasonText.style.opacity = '0';
+            reasonText.style.transform = 'scale(0.95)';
+
+            setTimeout(() => {
+                reasonText.textContent = `"${randomReason}"`;
+                reasonText.style.opacity = '1';
+                reasonText.style.transform = 'scale(1)';
+            }, 200);
+
+            triggerConfettiExplosion();
+        }
+
+        /* 4. QUIZ LOGIC */
+        function renderQuizQuestion() {
+            const q = QUIZ_DATA[currentQuizIndex];
+            document.getElementById('quiz-progress').textContent = `Question ${currentQuizIndex + 1} of ${QUIZ_DATA.length}`;
+            document.getElementById('quiz-score').textContent = `Score: ${quizScore}`;
+            document.getElementById('quiz-question').textContent = q.question;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((option, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-blushPink bg-white hover:bg-blushPink/30 font-medium text-sm text-gray-700 transition-all flex items-center justify-between";
+                btn.innerHTML = `<span>${option}</span> <i class="fa-regular fa-heart text-roseGold opacity-0 transition-opacity"></i>`;
+                
+                btn.onclick = () => handleQuizAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function handleQuizAnswer(selectedIdx) {
+            const q = QUIZ_DATA[currentQuizIndex];
+            if (selectedIdx === q.correct) {
+                quizScore++;
+            }
+
+            currentQuizIndex++;
+            if (currentQuizIndex < QUIZ_DATA.length) {
+                renderQuizQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            document.getElementById('quiz-card').classList.add('hidden');
+            const resultBox = document.getElementById('quiz-result');
+            resultBox.classList.remove('hidden');
+            
+            document.getElementById('quiz-result-text').textContent = 
+                `You scored ${quizScore} out of ${QUIZ_DATA.length}! No matter what, you're always 100% perfect to me! ❤️`;
+            
+            triggerConfettiExplosion();
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-card').classList.remove('hidden');
+            renderQuizQuestion();
+        }
+
+        /* 5. SECRET LETTER UNLOCKER */
+        function openSecretLetter() {
+            const sealed = document.getElementById('envelope-sealed');
+            const opened = document.getElementById('envelope-opened');
+
+            sealed.classList.add('hidden');
+            opened.classList.remove('hidden');
+            triggerConfettiExplosion();
+        }
+
+        function closeSecretLetter(e) {
+            e.stopPropagation();
+            const sealed = document.getElementById('envelope-sealed');
+            const opened = document.getElementById('envelope-opened');
+
+            opened.classList.add('hidden');
+            sealed.classList.remove('hidden');
+        }
+
+        /* 6. CONFETTI EFFECT */
+        function triggerConfettiExplosion() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#FF4D6D', '#FFD1DC', '#B76E79', '#FFE5D9']
+                });
+            }
+        }
+
+        /* 7. SOFT AMBIENT AUDIO SYNTHESIZER (Tone / Web Audio) */
+        function toggleRomanticAudio() {
+            const musicText = document.getElementById('music-text');
+            const musicIcon = document.getElementById('music-icon');
+
+            if (!isPlayingMusic) {
+                startRomanticChimes();
+                isPlayingMusic = true;
+                musicText.textContent = "Pause Ambience";
+                musicIcon.className = "fa-solid fa-pause text-heartRed";
+            } else {
+                stopRomanticChimes();
+                isPlayingMusic = false;
+                musicText.textContent = "Play Romantic Chimes";
+                musicIcon.className = "fa-solid fa-music text-heartRed";
+            }
+        }
+
+        function startRomanticChimes() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+
+            const notes = [261.63, 329.63, 392.00, 523.25, 587.33, 659.25]; // C E G C E G notes
+            
+            musicInterval = setInterval(() => {
+                if (!isPlayingMusic) return;
+                const note = notes[Math.floor(Math.random() * notes.length)];
+                playChimeNote(note);
+            }, 900);
+        }
+
+        function stopRomanticChimes() {
+            if (musicInterval) {
+                clearInterval(musicInterval);
+            }
+        }
+
+        function playChimeNote(freq) {
+            if (!audioContext) return;
+            const osc = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+            gain.gain.setValueAtTime(0.01, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.12, audioContext.currentTime + 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 2.5);
+
+            osc.connect(gain);
+            gain.connect(audioContext.destination);
+
+            osc.start();
+            osc.stop(audioContext.currentTime + 2.6);
+        }
+    </script>
+</body>
+</html>
